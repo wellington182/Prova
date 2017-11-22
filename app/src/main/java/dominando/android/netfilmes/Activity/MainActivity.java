@@ -1,24 +1,43 @@
-package dominando.android.netfilmes;
+package dominando.android.netfilmes.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import dominando.android.netfilmes.DAO.GeneroDAO;
-import dominando.android.netfilmes.Factory.DataBaseFactory;
+import dominando.android.netfilmes.DAO.UsuarioDAO;
 import dominando.android.netfilmes.Model.Genero;
+import dominando.android.netfilmes.Model.Usuario;
+import dominando.android.netfilmes.R;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static Usuario usuarioLogado;
+    private TextView textWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textWelcome = (TextView) findViewById(R.id.textWelcome);
+
+        Intent resultado = getIntent();
+        long id = resultado.getLongExtra("ID_USUARIO", 0);
+
+        if (usuarioLogado == null) {
+            usuarioLogado = new UsuarioDAO(this).carregaUsuarioPorID(id);
+        }
+
+        textWelcome.setText("Olá " + usuarioLogado.getLogin());
     }
 
     public void carregarMenu(View v) {
@@ -35,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
                 carregarIntent(GenerosActivity.class);
                 break;
         }
+    }
+
+    public void deslogar(View v){
+        usuarioLogado = null;
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
     private void carregarIntent(Class classe) {

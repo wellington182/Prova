@@ -1,4 +1,4 @@
-package dominando.android.netfilmes;
+package dominando.android.netfilmes.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import java.util.List;
 
 import dominando.android.netfilmes.DAO.GeneroDAO;
 import dominando.android.netfilmes.Model.Genero;
+import dominando.android.netfilmes.R;
 
 public class AtualizarGeneroActivity extends AppCompatActivity {
 

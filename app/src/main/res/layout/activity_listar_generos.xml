@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="dominando.android.netfilmes.ListarGenerosActivity">
+    xmlns:tools="http://schemas.android.com/tools" tools:context="dominando.android.netfilmes.Activity.ListarGenerosActivity">
 
     <ListView
         android:id="@+id/listGeneros"

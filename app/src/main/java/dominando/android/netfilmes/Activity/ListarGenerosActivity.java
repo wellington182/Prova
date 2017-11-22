@@ -1,4 +1,4 @@
-package dominando.android.netfilmes;
+package dominando.android.netfilmes.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,33 +12,34 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import dominando.android.netfilmes.Adapter.FilmeAdapter;
-import dominando.android.netfilmes.DAO.FilmeDAO;
-import dominando.android.netfilmes.Model.Filme;
+import dominando.android.netfilmes.Adapter.GeneroAdapter;
+import dominando.android.netfilmes.DAO.GeneroDAO;
+import dominando.android.netfilmes.Model.Genero;
+import dominando.android.netfilmes.R;
 
-public class ListarFilmesActivity extends AppCompatActivity {
+public class ListarGenerosActivity extends AppCompatActivity {
 
-    private ListView listaFilmes;
-    private FilmeAdapter myAdapter;
-    FilmeDAO filmeDAO;
+    private ListView listaGeneros;
+    private GeneroAdapter myAdapter;
+    GeneroDAO generoDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_filmes);
+        setContentView(R.layout.activity_listar_generos);
 
         carregarElementos();
 
-        listaFilmes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listaGeneros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Filme filme = (Filme) parent.getItemAtPosition(position);
-                createDialog(filme);
+                Genero genero = (Genero) parent.getItemAtPosition(position);
+                createDialog(genero);
             }
         });
     }
 
-    public void createDialog(final Filme filme){
+    public void createDialog(final Genero genero){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialog_title);
         builder.setItems(R.array.options, new DialogInterface.OnClickListener() {
@@ -46,13 +47,13 @@ public class ListarFilmesActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case 0:
-                        Intent it = new Intent(ListarFilmesActivity.this, AtualizarFilmeActivity.class);
-                        it.putExtra("filme", filme);
+                        Intent it = new Intent(ListarGenerosActivity.this, AtualizarGeneroActivity.class);
+                        it.putExtra("genero", genero);
                         startActivity(it);
                         break;
                     case 1:
-                        filmeDAO.deletaRegistro(filme.getId());
-                        Toast.makeText(ListarFilmesActivity.this, "Filme removido com sucesso.", Toast.LENGTH_SHORT).show();
+                        generoDAO.deletaRegistro(genero.getId());
+                        Toast.makeText(ListarGenerosActivity.this, "Gênero removido com sucesso.", Toast.LENGTH_SHORT).show();
                         carregarElementos();
                         break;
                 }
@@ -65,11 +66,10 @@ public class ListarFilmesActivity extends AppCompatActivity {
     }
 
     public void carregarElementos(){
-        listaFilmes = (ListView) findViewById(R.id.listFilmes);
-        filmeDAO = new FilmeDAO(this);
-        List<Filme> filmes = filmeDAO.carregaDadosLista(FilmeDAO.TODOS);
-        myAdapter = new FilmeAdapter(this,R.layout.activity_item_filme,filmes);
-        listaFilmes.setAdapter(myAdapter);
+        listaGeneros = (ListView) findViewById(R.id.listGeneros);
+        generoDAO = new GeneroDAO(this);
+        List<Genero> generos = generoDAO.carregaDadosLista();
+        myAdapter = new GeneroAdapter(this,R.layout.activity_item_genero,generos);
+        listaGeneros.setAdapter(myAdapter);
     }
 }
-

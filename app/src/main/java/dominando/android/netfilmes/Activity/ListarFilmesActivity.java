@@ -1,4 +1,4 @@
-package dominando.android.netfilmes;
+package dominando.android.netfilmes.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,20 +15,22 @@ import java.util.List;
 import dominando.android.netfilmes.Adapter.FilmeAdapter;
 import dominando.android.netfilmes.DAO.FilmeDAO;
 import dominando.android.netfilmes.Model.Filme;
+import dominando.android.netfilmes.R;
 
-public class ListarFilmesGeneroActivity extends AppCompatActivity {
-    private ListView listFilmesGeneros;
+public class ListarFilmesActivity extends AppCompatActivity {
+
+    private ListView listaFilmes;
     private FilmeAdapter myAdapter;
     FilmeDAO filmeDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_filmes_genero);
+        setContentView(R.layout.activity_listar_filmes);
 
         carregarElementos();
 
-        listFilmesGeneros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listaFilmes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Filme filme = (Filme) parent.getItemAtPosition(position);
@@ -45,13 +47,13 @@ public class ListarFilmesGeneroActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case 0:
-                        Intent it = new Intent(ListarFilmesGeneroActivity.this, AtualizarFilmeActivity.class);
+                        Intent it = new Intent(ListarFilmesActivity.this, AtualizarFilmeActivity.class);
                         it.putExtra("filme", filme);
                         startActivity(it);
                         break;
                     case 1:
                         filmeDAO.deletaRegistro(filme.getId());
-                        Toast.makeText(ListarFilmesGeneroActivity.this, "Filme removido com sucesso.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ListarFilmesActivity.this, "Filme removido com sucesso.", Toast.LENGTH_SHORT).show();
                         carregarElementos();
                         break;
                 }
@@ -64,10 +66,11 @@ public class ListarFilmesGeneroActivity extends AppCompatActivity {
     }
 
     public void carregarElementos(){
-        listFilmesGeneros = (ListView) findViewById(R.id.listFilmesGeneros);
+        listaFilmes = (ListView) findViewById(R.id.listFilmes);
         filmeDAO = new FilmeDAO(this);
-        List<Filme> filmes = filmeDAO.carregaDadosLista(FilmeDAO.POR_GENERO);
+        List<Filme> filmes = filmeDAO.carregaDadosLista(FilmeDAO.TODOS);
         myAdapter = new FilmeAdapter(this,R.layout.activity_item_filme,filmes);
-        listFilmesGeneros.setAdapter(myAdapter);
+        listaFilmes.setAdapter(myAdapter);
     }
 }
+

@@ -4,23 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="dominando.android.netfilmes.Activity.AtualizarFilmeActivity"
+    tools:context="dominando.android.netfilmes.Activity.RegistroActivity"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/editTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Titulo do Filme"/>
-    <Spinner
-        android:id="@+id/spinnerGenero"
+        android:id="@+id/editLoginUsuarioReg"
+        android:hint="Digite o Login"/>
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/generos"/>
+        android:id="@+id/editSenhaUsuarioReg"
+        android:hint="Digite a senha"
+        android:inputType="textPassword"/>
     <Button
-        android:onClick="salvarFilme"
-        android:layout_width="wrap_content"
+        android:onClick="gravarUsuario"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="Salvar"/>
+
 </LinearLayout>

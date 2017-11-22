@@ -1,4 +1,4 @@
-package dominando.android.netfilmes;
+package dominando.android.netfilmes.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import dominando.android.netfilmes.DAO.GeneroDAO;
 import dominando.android.netfilmes.Model.Genero;
+import dominando.android.netfilmes.R;
 
 public class CadastrarGeneroActivity extends AppCompatActivity {
 

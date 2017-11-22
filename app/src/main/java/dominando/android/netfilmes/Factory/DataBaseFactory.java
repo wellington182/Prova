@@ -18,25 +18,34 @@ public class DataBaseFactory extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE " + BancoUtil.TABELA_GENEROS + "("
+        String  sql = "CREATE TABLE "+ BancoUtil.TABELA_USUARIO+"("
+                + BancoUtil.ID_USUARIO+ " integer primary key autoincrement,"
+                + BancoUtil.LOGIN_USUARIO + " text,"
+                + BancoUtil.SENHA_USUARIO + " text"
+                +")";
+        db.execSQL(sql);
+
+
+        String sql2 = "CREATE TABLE " + BancoUtil.TABELA_GENEROS + "("
                 + BancoUtil.ID_GENERO + " integer primary key autoincrement, "
                 + BancoUtil.DESCRICAO_GENERO + " text)";
 
-        db.execSQL(sql);
+        db.execSQL(sql2);
 
-        String sql2 = "CREATE TABLE " + BancoUtil.TABELA_FILMES + "("
+        String sql3 = "CREATE TABLE " + BancoUtil.TABELA_FILMES + "("
                 + BancoUtil.ID_FILME + " integer primary key autoincrement, "
                 + BancoUtil.TITULO_FILME + " text, "
                 + BancoUtil.GENERO_FILME + " integer not null, "
                 + "FOREIGN KEY(" + BancoUtil.GENERO_FILME + ") "
                 + "REFERENCES " + BancoUtil.TABELA_GENEROS + "(" + BancoUtil.ID_GENERO + "))";
 
-        db.execSQL(sql2);
+        db.execSQL(sql3);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + BancoUtil.TABELA_USUARIO);
         db.execSQL("DROP TABLE IF EXISTS " + BancoUtil.TABELA_FILMES);
         db.execSQL("DROP TABLE IF EXISTS " + BancoUtil.TABELA_GENEROS);
 

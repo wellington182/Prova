@@ -9,24 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FilmesActivity" />
-        <activity android:name=".GenerosActivity" />
-        <activity android:name=".CadastrarFilmeActivity" />
-        <activity android:name=".CadastrarGeneroActivity" />
-        <activity android:name=".ListarFilmesActivity" />
-        <activity android:name=".ItemFilmeActivity" />
-        <activity android:name=".AtualizarFilmeActivity" />
-        <activity android:name=".ListarFilmesGeneroActivity" />
-        <activity android:name=".ListarGenerosActivity" />
-        <activity android:name=".ItemGeneroActivity" />
-        <activity android:name=".AtualizarGeneroActivity"></activity>
+        <activity android:name=".Activity.FilmesActivity" />
+        <activity android:name=".Activity.GenerosActivity" />
+        <activity android:name=".Activity.CadastrarFilmeActivity" />
+        <activity android:name=".Activity.CadastrarGeneroActivity" />
+        <activity android:name=".Activity.ListarFilmesActivity" />
+        <activity android:name=".Activity.ItemFilmeActivity" />
+        <activity android:name=".Activity.AtualizarFilmeActivity" />
+        <activity android:name=".Activity.ListarFilmesGeneroActivity" />
+        <activity android:name=".Activity.ListarGenerosActivity" />
+        <activity android:name=".Activity.ItemGeneroActivity" />
+        <activity android:name=".Activity.AtualizarGeneroActivity" />
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.RegistroActivity"></activity>
     </application>
 
 </manifest>

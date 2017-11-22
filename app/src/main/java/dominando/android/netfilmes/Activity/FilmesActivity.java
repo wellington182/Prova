@@ -1,9 +1,11 @@
-package dominando.android.netfilmes;
+package dominando.android.netfilmes.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import dominando.android.netfilmes.R;
 
 public class FilmesActivity extends AppCompatActivity {
 
